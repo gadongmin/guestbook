@@ -31,7 +31,6 @@ public class GuestbookController extends HttpServlet {
 			//db데이터가져온다  --> list
 			GuestbookDAO guestbookDAO = new GuestbookDAO();
 			List<GuestVO> guestList = guestbookDAO.guestSelect();
-			
 			System.out.println(guestList);
 			
 			//저밑에 있는 list.jsp에게 후반일 html을 만들고 응답문서 만들어 보낸다
