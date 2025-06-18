@@ -43,17 +43,6 @@ public class GuestbookController extends HttpServlet {
 			RequestDispatcher rd = request.getRequestDispatcher("/list.jsp");
 			rd.forward(request, response);
 
-		}else if("wform".equals(action)) { //등록폼업무
-			System.out.println("등록폼");
-	
-			//등록폼을 응답해야한다
-			//1)DB관련 할일이 없다 - 안하면된다
-			
-			//2)jsp에게 화면을 그리게 한다(포워드)
-			//writeForm.jsp 포워드한다
-			RequestDispatcher rd = request.getRequestDispatcher("/list.jsp");
-			rd.forward(request, response);
-		
 		}else if("write".equals(action) ) { //등록업무
 			System.out.println("등록");
 			
@@ -72,20 +61,31 @@ public class GuestbookController extends HttpServlet {
 			guestbookDAO.guestInsert(guestVO);
 			
 			//리다이렉트
-			response.sendRedirect("http://localhost:8080/guestbook/pbc?action=list");
+			response.sendRedirect("http://localhost:8080/guestbook/gbc?action=list");
+		
+		}else if("dform".equals(action)) { //삭제폼업무
+			System.out.println("삭제폼");
+	
+			//삭제폼을 응답해야한다
+			//1)DB관련 할일이 없다 - 안하면된다
+			
+			//2)jsp에게 화면을 그리게 한다(포워드)
+			//deleteForm.jsp 포워드한다
+			RequestDispatcher rd = request.getRequestDispatcher("/deleteForm.jsp");
+			rd.forward(request, response);
 		
 		}else if("delete".equals(action)) {
 			System.out.println("삭제");
 			
 			//파라미터에서  no 꺼내온다
-			int no =  Integer.parseInt(request.getParameter("no"));
+			String password =  request.getParameter("password");
 			
 			//dao를 통해서 no를 주고 삭제
 			GuestbookDAO guestbookDAO= new GuestbookDAO();
-			guestbookDAO.guestDelete(no);
+			guestbookDAO.guestDelete(password);
 			
 			// 리다이렉트 action=list
-			response.sendRedirect("http://localhost:8080/guestbook/pbc?action=list");
+			response.sendRedirect("http://localhost:8080/guestbook/gbc?action=list");
 		}
 	}
 
