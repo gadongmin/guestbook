@@ -1,4 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import = "java.util.List" %>	
+<%@ page import = "com.javaex.vo.GuestVO" %>
+
+<%
+	List<GuestVO> guestList = (List)request.getAttribute("gList");	
+	System.out.println("여기는 jsp");
+	System.out.println(guestList);
+%>
 
 <!DOCTYPE html>
 <html>
