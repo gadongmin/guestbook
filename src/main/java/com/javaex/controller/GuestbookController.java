@@ -39,7 +39,7 @@ public class GuestbookController extends HttpServlet {
 			
 			//2)list.jsp에 request객체와 response객체를 보낸다
 			//*포워드
-			RequestDispatcher rd = request.getRequestDispatcher("/list.jsp");
+			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/list.jsp");
 			rd.forward(request, response);
 
 		}else if("write".equals(action) ) { //등록업무
@@ -49,10 +49,10 @@ public class GuestbookController extends HttpServlet {
 			String name = request.getParameter("name");
 			String password =  request.getParameter("password");
 			String content = request.getParameter("content");
-			String regDate = request.getParameter("regDate");
+		
 			
 			//데이터를 묶는다
-			GuestVO guestVO = new GuestVO(name, password, content, regDate);
+			GuestVO guestVO = new GuestVO(name, password, content);
 			System.out.println(guestVO);
 			
 			//DAO를 통해서 저장시키기
@@ -70,7 +70,7 @@ public class GuestbookController extends HttpServlet {
 			
 			//2)jsp에게 화면을 그리게 한다(포워드)
 			//deleteForm.jsp 포워드한다
-			RequestDispatcher rd = request.getRequestDispatcher("/deleteForm.jsp");
+			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/deleteForm.jsp");
 			rd.forward(request, response);
 		
 		}else if("delete".equals(action)) {

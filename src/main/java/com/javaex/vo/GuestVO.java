@@ -16,11 +16,10 @@ public class GuestVO {
 		this.password = password;
 	}
 
-	public GuestVO(String name, String password, String content, String regDate) {
+	public GuestVO(String name, String password, String content) {
 		this.name = name;
 		this.password = password;
 		this.content = content;
-		this.regDate = regDate;
 	}
 	
 	public GuestVO(int no, String name, String password, String content, String regDate) {
