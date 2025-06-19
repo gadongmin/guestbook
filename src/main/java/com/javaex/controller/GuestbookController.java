@@ -76,12 +76,13 @@ public class GuestbookController extends HttpServlet {
 		}else if("delete".equals(action)) {
 			System.out.println("삭제");
 			
-			//파라미터에서  no 꺼내온다
+			//파라미터에서 password 꺼내온다
+			int no = Integer.parseInt(request.getParameter("no"));
 			String password =  request.getParameter("password");
-			
-			//dao를 통해서 no를 주고 삭제
+						
+			//dao를 통해서 password를 주고 삭제
 			GuestbookDAO guestbookDAO= new GuestbookDAO();
-			guestbookDAO.guestDelete(password);
+			guestbookDAO.guestDelete(no, password);
 			
 			// 리다이렉트 action=list
 			response.sendRedirect("http://localhost:8080/guestbook/gbc?action=list");

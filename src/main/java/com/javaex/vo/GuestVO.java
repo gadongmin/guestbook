@@ -10,6 +10,11 @@ public class GuestVO {
 
 	// 생성자
 	public GuestVO() {}
+	
+	public GuestVO(int no, String password) {
+		this.no = no;
+		this.password = password;
+	}
 
 	public GuestVO(String name, String password, String content, String regDate) {
 		this.name = name;

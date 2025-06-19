@@ -146,7 +146,7 @@ public class GuestbookDAO {
 		}
 
 		// guest 삭제
-		public int guestDelete(String password) {
+		public int guestDelete(int no, String password) {
 			System.out.println("guestDelete");
 
 			int count = -1;
@@ -158,11 +158,13 @@ public class GuestbookDAO {
 				// - SQL문준비
 				String query = "";
 				query += " delete from guestbook ";
-				query += " where password = ? ";
+				query += " where no = ? ";
+				query += " and password = ? ";
 
 				// - 바인딩
 				pstmt = conn.prepareStatement(query);
-				pstmt.setString(1, password);
+				pstmt.setInt(1, no);
+				pstmt.setString(2, password);
 
 				// - 실행
 				count = pstmt.executeUpdate();
@@ -177,44 +179,4 @@ public class GuestbookDAO {
 			this.close();
 			return count;
 		}
-		
-		// guest) 수정
-		public int guestUpdate(GuestVO guestVO) {
-			System.out.println("guestUpdate()");
-			
-			int count = -1;
-			this.connect();
-
-			try {
-				// 3. SQL문준비 / 바인딩 / 실행
-				// - SQL문준비
-				String query = "";
-				query += " update 	guestbook ";
-				query += " set 		name = ? ";
-				query += " 			,password = ? ";
-				query += " 			,content = ? ";
-				query += " 			,reg_date = ? ";
-				query += " where 	no = ? ";
-
-				// - 바인딩
-				pstmt = conn.prepareStatement(query);
-				pstmt.setString(1, guestVO.getName());
-				pstmt.setString(2, guestVO.getPassword());
-				pstmt.setString(3, guestVO.getContent());
-				pstmt.setString(4, guestVO.getRegDate());
-				pstmt.setInt(5, guestVO.getNo());
-
-				// - 실행
-				count = pstmt.executeUpdate();
-
-				// 4. 결과처리
-				System.out.println(count + "건이 수정되었습니다.");
-
-			} catch (SQLException e) {
-				System.out.println("error:" + e);
-			}
-
-			this.close();
-			return count;
-		}
-}
+	}
